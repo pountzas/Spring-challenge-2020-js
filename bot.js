@@ -15,6 +15,7 @@ while (true) {
     const myScore = parseInt(inputs[0]);
     const opponentScore = parseInt(inputs[1]);
     const visiblePacCount = parseInt(readline()); // all your pacs and enemy pacs in sight
+    let maxid = 0
     for (let i = 0; i < visiblePacCount; i++) {
         var inputs = readline().split(' ');
         const pacId = parseInt(inputs[0]); // pac number (unique within a team)
@@ -24,7 +25,11 @@ while (true) {
         const typeId = inputs[4]; // unused in wood leagues
         const speedTurnsLeft = parseInt(inputs[5]); // unused in wood leagues
         const abilityCooldown = parseInt(inputs[6]); // unused in wood leagues
+        if (pacId > maxid){
+            maxid = pacId
+        }
     }
+    let pac = 0
     let target = -1
     let targetX = 0
     let targetY = 0
@@ -39,12 +44,14 @@ while (true) {
             targetY = y
             target = value
         }
-        
+
     }
 
     // Write an action using console.log()
     // To debug: console.error('Debug messages...');
-
-    console.log('MOVE 0 ' + targetX + ' ' + targetY);     // MOVE <pacId> <x> <y>
-
+    let go =""
+    for (let i = 1; i <= maxid ; i++){
+    go += '|MOVE '+ i + ' ' + targetX + ' ' + targetY     // MOVE <pacId> <x> <y>
+    }
+    console.log('MOVE '+ 0 + ' ' + targetX + ' ' + targetY + go)
 }
